@@ -9,6 +9,9 @@ namespace InventoryManagementSystem
     {
         public static void Register(HttpConfiguration config)
         {
+            //PC json serialization
+            var settings = config.Formatters.JsonFormatter.SerializerSettings;
+            //ends
             // Web API configuration and services
 
             // Web API routes
