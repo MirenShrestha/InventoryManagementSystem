@@ -8,14 +8,13 @@ namespace InventoryManagementSystem.Controllers
 {
     public class DashboardController : Controller
     {
-        // GET: Dashboard
-        public ActionResult Index()
-        {
-            return View();
-        }
+        InventoryManagementSystemEntities db = new InventoryManagementSystemEntities();
+        
 
         public ActionResult Dashboard()
         {
+            int UserCount = db.users.Count();
+            ViewBag.UserCount = UserCount;
             return View();
         }
     }
