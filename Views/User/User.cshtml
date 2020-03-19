@@ -1,0 +1,69 @@
+﻿@model IEnumerable<InventoryManagementSystem.Models.UserViewModel>
+
+
+
+@{
+    ViewBag.Title = "User";
+}
+
+<div class="row">
+    <div class="col-12">
+        <!-- Recent Order Table -->
+        <div class="card card-table-border-none" id="recent-orders">
+            <div class="card-header justify-content-between">
+                <h2>Users</h2>
+                <div class="date-range-report ">
+                    <span></span>
+                </div>
+            </div>
+            <div class="card-body pt-0 pb-5">
+                <table class="table card-table table-responsive table-responsive-large" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Email</th>
+                            <th>Contact No.</th>
+                            <th>Address</th>
+                            <th>Status</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var userlist in Model)
+                        {
+                        <tr>
+                            <td>@userlist.Id</td>
+                            <td>@userlist.Firstname</td>
+                            <td>@userlist.Lastname</td>
+                            <td>@userlist.Email</td>
+
+                            <td>@userlist.ContactNo</td>
+                            <td>@userlist.Address</td>
+
+                            <td>@userlist.Status</td>
+                            <td>@userlist.Role</td>
+                            <td>
+                                <button type="button" class="btn btn-success">Edit</button>
+                                <button type="button" class="btn btn-danger">Delete</button>
+
+                            </td>
+                            @*<td>
+            <a href="/User/SaveUser?Id=@user.Id" class="btn btn-primary fa fa-pencil"></a>
+            <button class="btn btn-danger fa fa-trash"></button>
+        </td>*@
+                        </tr>
+                        }
+                    </tbody>
+
+
+                    </table>
+                </div>
+
+                 
