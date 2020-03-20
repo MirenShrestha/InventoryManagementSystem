@@ -1564,6 +1564,8 @@
     <Content Include="Views\Shared\_LayoutSignIn.cshtml" />
     <Content Include="Views\User\User.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\AddNewUser.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

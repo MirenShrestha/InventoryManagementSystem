@@ -1,0 +1,134 @@
+﻿@model InventoryManagementSystem.Models.UserViewModel
+
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<div id="page-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel">
+                <!-- Panel heading -->
+                <div class="panel-heading">
+                    <h3 class="panel-title">Edit User</h3>
+                </div>
+                <!-- Panel body -->
+                @*<form id="registrationForm" class="form-horizontal">*@
+                @using (Html.BeginForm("Delete", "User", FormMethod.Post, new { @class = "form-horizontal", @enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(m => m.Id)
+                    <div class="panel-body">
+                        <div class="form-group">
+
+
+
+
+
+
+
+                            <div class="form-group">
+                                <label class="col-xs-2 control-label">Firstname</label>
+                                <div class="col-lg-6">
+                                    @Html.TextBoxFor(m => m.Firstname, new { @class = "form-control", @placeholder = "Address" })
+                                    @*<input type="text" class="form-control" name="username" />*@
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-xs-2 control-label">Lastname</label>
+                                <div class="col-lg-6">
+                                    @Html.TextBoxFor(m => m.Lastname, new { @class = "form-control", @placeholder = "Address" })
+                                    @*<input type="text" class="form-control" name="username" />*@
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-2 control-label">Username</label>
+                                <div class="col-lg-6">
+                                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "Address" })
+                                    @*<input type="text" class="form-control" name="username" />*@
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-2 control-label">Password</label>
+                                <div class="col-lg-6">
+                                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @placeholder = "Address" })
+                                    @*<input type="text" class="form-control" name="username" />*@
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label class="col-xs-2 control-label">Email</label>
+                                <div class="col-lg-6">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })
+                                    @*<input type="text" class="form-control" name="username" />*@
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-2 control-label">Contact</label>
+                                <div class="col-lg-6">
+                                    @Html.TextBoxFor(m => m.ContactNo, new { @class = "form-control", @placeholder = "Contact" })
+                                    @*<input type="text" class="form-control" name="username" />*@
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-xs-2 control-label">Address</label>
+                                <div class="col-lg-6">
+                                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @placeholder = "Address" })
+                                    @*<input type="text" class="form-control" name="username" />*@
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-2 control-label">Status</label>
+                                <div class="col-lg-6">
+                                    @Html.TextBoxFor(m => m.Status, new { @class = "form-control", @placeholder = "Address" })
+                                    @*<input type="text" class="form-control" name="username" />*@
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-2 control-label">User Role</label>
+                                <div class="col-lg-6">
+                                    @Html.DropDownListFor(m => m.RoleId, Model.UserRoleList, "Select..", new { @class = "form-control", })
+
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-xs-9 col-xs-offset-3">
+                                    <button type="submit" class="btn btn-primary" name="signup" value="Sign up">
+                                        Confirm Delete
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @*</form>*@
+            </div>
+
+
+            @*@Scripts.Render("~/bundles/jqueryval")*@
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+

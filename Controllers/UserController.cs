@@ -43,6 +43,46 @@ namespace InventoryManagementSystem.Controllers
         }
 
 
+
+        public ActionResult AddNewUser ()
+        {
+            UserViewModel vm = new UserViewModel();
+           
+            vm.UserRoleList = db.tblRoles.Select(c => new SelectListItem { Text = c.Role, Value = c.Id.ToString() }).ToList();
+           
+            return View(vm);
+        }
+
+
+        [HttpPost]
+        public ActionResult AddNewUser(UserViewModel vmodel)
+        {
+
+            vmodel.UserRoleList = db.tblRoles.Select(c => new SelectListItem { Text = c.Role, Value = c.Id.ToString() }).ToList();
+            //if (ModelState.IsValid)
+            //{
+                tblUser user = new tblUser();
+                user.StatusId = 1;                
+
+                user.Username = vmodel.Username;
+                user.Password = vmodel.Password;
+                user.Firstname = vmodel.Firstname;
+                user.Lastname = vmodel.Lastname;
+                user.ContactNo = vmodel.ContactNo;
+                user.Address = vmodel.Address;
+                user.Email = vmodel.Email;                
+                user.RoleId = vmodel.RoleId;          
+                
+                db.tblUsers.Add(user);        
+
+                db.SaveChanges();
+
+                return RedirectToAction("User");        
+        }
+
+
+
+
         public ActionResult Edit(int id)
         {
              UserViewModel vm  = new UserViewModel();
@@ -98,6 +138,46 @@ namespace InventoryManagementSystem.Controllers
         }
 
 
+        public ActionResult Delete(int id)
+        {
+            UserViewModel vm = new UserViewModel();
+
+            vm.UserRoleList = db.tblRoles.Select(c => new SelectListItem { Text = c.Role, Value = c.Id.ToString() }).ToList();
+
+            var user = db.tblUsers.Where(c => c.Id == id).FirstOrDefault();
+            vm.Id = user.Id;
+            vm.Firstname = user.Firstname;
+            vm.Lastname = user.Lastname;
+            vm.Username = user.Username;
+            vm.Email = user.Email;
+            vm.ContactNo = user.ContactNo;
+            vm.Address = user.Address;
+            vm.Status = user.StatusId;
+            vm.RoleId = user.RoleId;
+
+            return View(vm);
 
         }
+
+
+        [HttpPost]
+        public ActionResult Delete(UserViewModel uvm)
+        {
+
+            UserViewModel uv = new UserViewModel();
+            //uv.UserRoleList = db.tblRoles.Select(c => new SelectListItem { Text = c.Role, Value = c.Id.ToString() }).ToList();
+
+            var user = db.tblUsers.Where(c => c.Id == uvm.Id).FirstOrDefault();            
+            
+            tblUser tb = db.tblUsers.Find(uvm.Id);
+            db.tblUsers.Remove(tb);
+            db.SaveChanges();
+            return RedirectToAction("User");
+        }
+
+
+
+
+
+    }
 }

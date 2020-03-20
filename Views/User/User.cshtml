@@ -11,40 +11,46 @@
 <script src="~/plugins/datatables/media/js/jquery.dataTables.js"></script>
 <script src="~/plugins/datatables/media/js/dataTables.bootstrap.js"></script>
 <script src="~/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+
+@*<script src="~/Scripts/js/demo/tables-datatables.js"></script>*@
+
+
 <script type="text/javascript">
-    $(document).ready(function (e){
+    $(document).ready(function (e) {
 
-    var t = $('#demo-dt-addrow').DataTable({
-        "responsive": true,
-        "language": {
-            "paginate": {
-                "previous": '<i class="fa fa-angle-left"></i>',
-                "next": '<i class="fa fa-angle-right"></i>'
-            }
-        },
-        "dom": '<"newtoolbar">frtip'
-    });
-    $('#demo-custom-toolbar2').appendTo($("div.newtoolbar"));
+        var t = $('#demo-dt-addrow').DataTable({
+            "responsive": true,
+            "language": {
+                "paginate": {
+                    "previous": '<i class="fa fa-angle-left"></i>',
+                    "next": '<i class="fa fa-angle-right"></i>'
+                }
+            },
+            "dom": '<"newtoolbar">frtip'
+        });
+        $('#demo-custom-toolbar2').appendTo($("div.newtoolbar"));
 
-    $('#demo-dt-addrow-btn').on( 'click', function () {
-        t.row.add( [
-			'Albert Johnson',
-			'New Row',
-			'New Row',
-			jasmine.randomInt(1,100),
-			'2015/10/15',
-			'$' + jasmine.randomInt(1,100) +',000'
-        ] ).draw();
-    } );
+        $('#demo-dt-addrow-btn').on('click', function () {
+            t.row.add([
+                'Albert Johnson',
+                'New Row',
+                'New Row',
+                jasmine.randomInt(1, 100),
+                '2015/10/15',
+                '$' + jasmine.randomInt(1, 100) + ',000'
+            ]).draw();
+        });
     });
 </script>
 
 <div class="panel">
     <div class="panel-heading">
         <h2 class="panel-title">User List</h2>
+
     </div>
+
     <div id="demo-custom-toolbar2" class="table-toolbar-left">
-        <a href="/User/SaveUser?Id=0" id="demo-dt-addrow-btn" class="btn btn-pink">Add row</a>
+        <a href="/User/AddNewUser?Id=0" id="demo-dt-addrow-btn" class="btn btn-pink">Add row</a>
     </div>
     <div class="panel-body">
         <table id="demo-dt-addrow" class="table table-striped table-bordered">
@@ -66,26 +72,44 @@
 
                 @foreach (var user in Model)
                 {
-                <tr>
+                    <tr>
 
-                    <td>@user.Id</td>
-                    <td>@user.Firstname</td>
-                    <td>@user.Lastname</td>
-                    <td>@user.Username</td>
-                    <td>@user.Email</td>
-                    <td>@user.Address</td>
-                    <td>@user.ContactNo</td>
-                    <td>@user.Status</td>
-                    <td>@user.Role</td>
+                        <td>@user.Id</td>
+                        <td>@user.Firstname</td>
+                        <td>@user.Lastname</td>
+                        <td>@user.Username</td>
+                        <td>@user.Email</td>
+                        <td>@user.Address</td>
+                        <td>@user.ContactNo</td>
+                        <td>@user.Status</td>
+                        <td>@user.Role</td>
 
-                    <td>
-                        <a href="/User/Edit?Id=@user.Id" class="btn btn-primary fa fa-pencil"></a>
-                        <button class="btn btn-danger fa fa-trash"></button>
-                    </td>
-                </tr>
+                        <td>
+                            <a href="/User/Edit?Id=@user.Id" class="btn btn-primary fa fa-pencil"></a>
+                            <a    href="/User/Delete?Id=@user.Id" button class="btn btn-danger fa fa-trash deleteUser"> </a>
+                         
+                        </td>
+
+                    </tr>
                 }
 
             </tbody>
         </table>
     </div>
 </div>
+
+
+@*@section scripts{
+<script type="text/javascript">
+    $(".deleteUser").onclick(function () {
+        var s1=@user.Id;
+            $.ajax({
+                url: '@Url.Action("Delete","User",s1)',
+                success: function() {
+                    //table.row(button.parents("tr")).remove().draw();
+                }
+            });
+        });
+
+</script>*@
+}
