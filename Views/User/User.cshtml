@@ -6,64 +6,83 @@
     ViewBag.Title = "User";
 }
 
-<div class="row">
-    <div class="col-12">
-        <!-- Recent Order Table -->
-        <div class="card card-table-border-none" id="recent-orders">
-            <div class="card-header justify-content-between">
-                <h2>Users</h2>
-                <div class="date-range-report ">
-                    <span></span>
-                </div>
-            </div>
-            <div class="card-body pt-0 pb-5">
-                <table class="table card-table table-responsive table-responsive-large" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                            <th>Email</th>
-                            <th>Contact No.</th>
-                            <th>Address</th>
-                            <th>Status</th>
-                            <th>Role</th>
-                            <th>Actions</th>
+<link href="~/plugins/datatables/media/css/dataTables.bootstrap.css" rel="stylesheet">
+<link href="~/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css" rel="stylesheet">
+<script src="~/plugins/datatables/media/js/jquery.dataTables.js"></script>
+<script src="~/plugins/datatables/media/js/dataTables.bootstrap.js"></script>
+<script src="~/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function (e){
 
-                            <th></th>
-                        </tr>
-                    </thead>
+    var t = $('#demo-dt-addrow').DataTable({
+        "responsive": true,
+        "language": {
+            "paginate": {
+                "previous": '<i class="fa fa-angle-left"></i>',
+                "next": '<i class="fa fa-angle-right"></i>'
+            }
+        },
+        "dom": '<"newtoolbar">frtip'
+    });
+    $('#demo-custom-toolbar2').appendTo($("div.newtoolbar"));
 
-                    <tbody>
+    $('#demo-dt-addrow-btn').on( 'click', function () {
+        t.row.add( [
+			'Albert Johnson',
+			'New Row',
+			'New Row',
+			jasmine.randomInt(1,100),
+			'2015/10/15',
+			'$' + jasmine.randomInt(1,100) +',000'
+        ] ).draw();
+    } );
+    });
+</script>
 
-                        @foreach (var userlist in Model)
-                        {
-                        <tr>
-                            <td>@userlist.Id</td>
-                            <td>@userlist.Firstname</td>
-                            <td>@userlist.Lastname</td>
-                            <td>@userlist.Email</td>
+<div class="panel">
+    <div class="panel-heading">
+        <h2 class="panel-title">User List</h2>
+    </div>
+    <div id="demo-custom-toolbar2" class="table-toolbar-left">
+        <a href="/User/SaveUser?Id=0" id="demo-dt-addrow-btn" class="btn btn-pink">Add row</a>
+    </div>
+    <div class="panel-body">
+        <table id="demo-dt-addrow" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th class="min-tablet">Email</th>
+                    <th class="min-tablet">Address</th>
+                    <th class="min-desktop">Contact No</th>
+                    <th class="min-desktop">Status</th>
+                    <th class="min-desktop">Role</th>
+                    <th class="min-desktop">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
 
-                            <td>@userlist.ContactNo</td>
-                            <td>@userlist.Address</td>
+                @foreach (var user in Model)
+                {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Firstname</td>
+                    <td>@user.Lastname</td>
+                    <td>@user.Email</td>
+                    <td>@user.Address</td>
+                    <td>@user.ContactNo</td>
+                    <td>@user.Status</td>
+                    <td>@user.Role</td>
 
-                            <td>@userlist.Status</td>
-                            <td>@userlist.Role</td>
-                            <td>
-                                <button type="button" class="btn btn-success">Edit</button>
-                                <button type="button" class="btn btn-danger">Delete</button>
+                    <td>
+                        <a href="/User/SaveUser?Id=@user.Id" class="btn btn-primary fa fa-pencil"></a>
+                        <button class="btn btn-danger fa fa-trash"></button>
+                    </td>
+                </tr>
+                }
 
-                            </td>
-                            @*<td>
-            <a href="/User/SaveUser?Id=@user.Id" class="btn btn-primary fa fa-pencil"></a>
-            <button class="btn btn-danger fa fa-trash"></button>
-        </td>*@
-                        </tr>
-                        }
-                    </tbody>
-
-
-                    </table>
-                </div>
-
-                 
+            </tbody>
+        </table>
+    </div>
+</div>
