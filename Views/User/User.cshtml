@@ -53,6 +53,7 @@
                     <th>Id</th>
                     <th>Firstname</th>
                     <th>Lastname</th>
+                    <th>Username</th>
                     <th class="min-tablet">Email</th>
                     <th class="min-tablet">Address</th>
                     <th class="min-desktop">Contact No</th>
@@ -66,9 +67,11 @@
                 @foreach (var user in Model)
                 {
                 <tr>
+
                     <td>@user.Id</td>
                     <td>@user.Firstname</td>
                     <td>@user.Lastname</td>
+                    <td>@user.Username</td>
                     <td>@user.Email</td>
                     <td>@user.Address</td>
                     <td>@user.ContactNo</td>
@@ -76,7 +79,7 @@
                     <td>@user.Role</td>
 
                     <td>
-                        <a href="/User/SaveUser?Id=@user.Id" class="btn btn-primary fa fa-pencil"></a>
+                        <a href="/User/Edit?Id=@user.Id" class="btn btn-primary fa fa-pencil"></a>
                         <button class="btn btn-danger fa fa-trash"></button>
                     </td>
                 </tr>
