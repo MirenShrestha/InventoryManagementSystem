@@ -40,5 +40,15 @@ namespace InventoryManagementSystem.Controllers
                              }).ToList();
             return View(lstvmUser);
         }
+
+
+        public ActionResult Edit()
+        {
+            return View();
+        }
+
+
+
+
     }
 }
